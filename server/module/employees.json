@@ -1,0 +1,28 @@
+  [
+  {
+    "firstName": "Benicio",
+    "lastName": "Del Toro",
+    "picture": "0.jpg"
+  },
+  {
+    "firstName": "Brad",
+    "lastName": "Pitt",
+    "picture": "1.jpg"
+  },
+  {
+    "firstName": "Angelina",
+    "lastName": "Jolie",
+    "picture": "2.jpg"
+  },
+  {
+    "firstName": "George",
+    "lastName": "Clooney",
+    "picture": "3.jpg"
+  },
+  {
+    "firstName": "Leonardo",
+    "lastName": "DiCaprio",
+    "picture": "4.jpg"
+  }
+]
+

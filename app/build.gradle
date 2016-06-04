@@ -1,0 +1,59 @@
+apply plugin: 'com.android.application'
+apply plugin: 'com.neenbedankt.android-apt'
+
+android {
+    compileSdkVersion 23
+    buildToolsVersion "23.0.2"
+
+
+    defaultConfig {
+        applicationId "com.octo.android.goodpracticies"
+        minSdkVersion 15
+        targetSdkVersion 23
+        versionCode 1
+        versionName "1.0"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+        // generate in BuildConfig.java the root url of the network
+        debug {
+            NetworkInterface.getNetworkInterfaces().each {
+                iface ->
+                    iface.inetAddresses.each {
+                        addr ->
+                            if (addr instanceof Inet4Address && !addr.isLoopbackAddress())
+                                project.ext.localIP = addr.hostAddress
+                    }
+            }
+            buildConfigField "String", "rootUrl", "\"http://${project.ext.localIP}:5003/\""
+        }
+    }
+
+
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    // The second version is nice but in beta -> http://inthecheesefactory.com/blog/retrofit-2.0/en
+    compile 'com.squareup.retrofit:retrofit:1.9.0'
+
+    // View Injection
+    compile 'com.jakewharton:butterknife:7.0.1'
+
+    // Dependency injection : dagger2
+    apt 'com.google.dagger:dagger-compiler:2.0.1'
+    provided 'org.glassfish:javax.annotation:10.0-b28'
+    compile 'com.google.dagger:dagger:2.0.1'
+
+    // it simplifies the communication between components
+    compile 'com.squareup:otto:1.3.8'
+
+    // For the galery
+    compile 'com.squareup.picasso:picasso:2.3.2'
+
+    testCompile 'junit:junit:4.12'
+    compile 'com.android.support:appcompat-v7:23.1.1'
+}
