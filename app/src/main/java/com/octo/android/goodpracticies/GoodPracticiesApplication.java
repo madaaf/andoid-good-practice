@@ -57,7 +57,7 @@ public class GoodPracticiesApplication extends Application {
 		public GPModule(GoodPracticiesApplication app) {
 			this.appl = app;
 			this.restAdapter = new RestAdapter.Builder().setEndpoint(BuildConfig.rootUrl).build();
-			Log.e("SOEF2", BuildConfig.rootUrl);
+			Log.e("SOEF3", BuildConfig.rootUrl);
 		}
 
 		@Provides
